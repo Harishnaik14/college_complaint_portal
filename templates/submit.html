@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Submit Complaint | College Complaint Portal{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h3 class="mb-3">Submit Complaint or Suggestion</h3>
+                <p class="text-muted">Your feedback helps improve campus life. Fields marked with * are required.</p>
+                <form method="post" id="complaintForm">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="id_name" class="form-label">Name</label>
+                            {{ form.name }}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="id_email" class="form-label">Email</label>
+                            {{ form.email }}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="id_category" class="form-label">Category</label>
+                            {{ form.category }}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="id_subject" class="form-label">Subject</label>
+                            {{ form.subject }}
+                        </div>
+                        <div class="col-12">
+                            <label for="id_description" class="form-label">Description</label>
+                            {{ form.description }}
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check">
+                                {{ form.anonymous }}
+                                <label class="form-check-label" for="id_anonymous">Submit anonymously</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body p-4">
+                <h4 class="mb-3">Latest Announcements</h4>
+                {% for item in announcements %}
+                    <article class="border rounded p-3 mb-3 bg-light-subtle">
+                        <p class="small text-muted mb-1">{{ item.created_at|date:'M d, Y' }}</p>
+                        <h6 class="fw-bold mb-2">{{ item.title }}</h6>
+                        <p class="mb-0 text-muted">{{ item.message }}</p>
+                    </article>
+                {% empty %}
+                    <div class="text-muted">No announcements yet.</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

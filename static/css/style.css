@@ -1,0 +1,150 @@
+:root {
+    --bg-color: #f7f9fc;
+    --surface: #ffffff;
+    --surface-muted: #f8f9fa;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --primary: #0d6efd;
+    --primary-dark: #0a58ca;
+    --border: #e5e7eb;
+    --success: #198754;
+    --warning: #ffc107;
+    --danger: #dc3545;
+}
+
+body.dark-theme {
+    --bg-color: #111827;
+    --surface: #1f2937;
+    --surface-muted: #0f172a;
+    --text: #e5e7eb;
+    --muted: #cbd5e1;
+    --primary: #60a5fa;
+    --primary-dark: #3b82f6;
+    --border: #334155;
+    --success: #22c55e;
+    --warning: #fbbf24;
+    --danger: #f87171;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text);
+    transition: background 0.3s ease;
+    min-width: 320px;
+    overflow-x: hidden;
+}
+
+main {
+    width: 100%;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.card,
+.table,
+.form-control,
+.form-select,
+.form-check-input {
+    background-color: var(--surface) !important;
+    color: var(--text) !important;
+    border-color: var(--border) !important;
+}
+
+.navbar {
+    background-color: #0d6efd !important;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link,
+.navbar .navbar-toggler-icon,
+.navbar .btn-outline-light {
+    color: #fff !important;
+}
+
+.navbar .nav-link:hover {
+    color: #e9ecef !important;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #eef5ff, #f8f5ff);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.hero-section img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+body.dark-theme .hero-section {
+    background: linear-gradient(135deg, #0f172a, #1e1b4b);
+}
+
+.card {
+    border-radius: 0.9rem;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.stat-card {
+    border-left: 4px solid var(--primary);
+    min-height: 120px;
+}
+
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+    .hero-section {
+        padding: 1.5rem !important;
+    }
+
+    .btn,
+    .form-control,
+    .form-select {
+        width: 100%;
+    }
+
+    .d-flex.gap-3 {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    h1.display-5 {
+        font-size: 1.8rem;
+    }
+}
+
+.badge-pending { background-color: #fff3cd; color: #664d03; }
+.badge-progress { background-color: #cff4fc; color: #055160; }
+.badge-resolved { background-color: #d1e7dd; color: #0f5132; }
+
+body.dark-theme .badge-pending { background-color: #4d3d00; color: #fcd34d; }
+body.dark-theme .badge-progress { background-color: #0b3d5a; color: #7dd3fc; }
+body.dark-theme .badge-resolved { background-color: #153d2f; color: #86efac; }

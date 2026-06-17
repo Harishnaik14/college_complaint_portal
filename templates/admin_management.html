@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Management | College Complaint Portal{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+    <div class="col-lg-5">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h4 class="mb-3">Add Announcement</h4>
+                <form method="post" action="{% url 'add_announcement' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label">Title</label>
+                        {{ form.title }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Message</label>
+                        {{ form.message }}
+                    </div>
+                    <button class="btn btn-primary" type="submit">Publish</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-7">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="mb-0">Manage Announcements</h4>
+                    <a class="btn btn-outline-secondary btn-sm" href="{% url 'admin_dashboard' %}">Back to Dashboard</a>
+                </div>
+                {% for item in announcements %}
+                    <div class="border rounded p-3 mb-3">
+                        <div class="d-flex justify-content-between align-items-start gap-3">
+                            <div>
+                                <h6>{{ item.title }}</h6>
+                                <p class="text-muted mb-0">{{ item.message }}</p>
+                            </div>
+                            <form method="post" action="{% url 'delete_announcement' item.id %}">
+                                {% csrf_token %}
+                                <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p class="text-muted mb-0">No announcements yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
